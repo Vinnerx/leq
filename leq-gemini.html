@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEQ Educational Guide | Umeå University</title>
+    <style>
+        :root {
+            --primary-navy: #002F5F;
+            --primary-teal: #006C7A;
+            --bg-light: #F4F6F8;
+            --text-dark: #333333;
+            --text-muted: #555555;
+            --meaningfulness: #E07A5F;
+            --comprehensibility: #3D5A80;
+            --manageability: #81B29A;
+            --white: #FFFFFF;
+            --border-color: #E0E4E8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--primary-navy);
+            color: var(--white);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        nav h1 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--primary-teal);
+        }
+
+        /* Layout */
+        main {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 3rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            scroll-margin-top: 5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            color: var(--primary-navy);
+            border-bottom: 2px solid var(--primary-teal);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+        }
+
+        h3 {
+            color: var(--primary-navy);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        ul {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Microtexts */
+        .microtext {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+
+        .microtext.purpose { background-color: #E6F3F5; color: var(--primary-teal); }
+        .microtext.care { background-color: #FFF0E6; color: #D35400; }
+        .microtext.practice { background-color: #F0F2F5; color: var(--primary-navy); }
+
+        /* Flowchart */
+        .flowchart-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .flow-row {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .step-btn {
+            background-color: var(--white);
+            border: 2px solid var(--primary-teal);
+            color: var(--primary-navy);
+            padding: 1.25rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            width: 220px;
+            text-align: center;
+            position: relative;
+            font-size: 1rem;
+        }
+
+        .step-btn:hover, .step-btn.active {
+            background-color: var(--primary-teal);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,108,122,0.15);
+        }
+
+        .step-btn.dashed {
+            border-style: dashed;
+            border-width: 2px;
+            border-color: var(--primary-navy);
+        }
+
+        .step-panel {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--primary-teal);
+            padding: 2rem;
+            border-radius: 0 8px 8px 0;
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+            margin-top: 1rem;
+        }
+
+        .step-panel.active {
+            display: block;
+        }
+
+        .step-panel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .step-card {
+            background: var(--white);
+            padding: 1.25rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Learning Factors Grid */
+        .factors-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+        }
+
+        .legend-badge {
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .factors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .factor-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .factor-card:hover {
+            box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+            border-color: var(--primary-teal);
+        }
+
+        .factor-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 6px;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .factor-card.meaningfulness::before { background-color: var(--meaningfulness); }
+        .factor-card.comprehensibility::before { background-color: var(--comprehensibility); }
+        .factor-card.manageability::before { background-color: var(--manageability); }
+
+        .factor-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-navy);
+            padding-right: 1.5rem;
+        }
+
+        .factor-card::after {
+            content: '+';
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--primary-teal);
+            line-height: 1;
+            transition: transform 0.2s;
+        }
+
+        .factor-card.expanded::after {
+            content: '−';
+        }
+
+        .factor-details {
+            display: none;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            animation: fadeIn 0.3s;
+        }
+
+        .factor-card.expanded .factor-details {
+            display: block;
+        }
+
+        .statement-box {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            border-left: 3px solid var(--primary-navy);
+        }
+
+        /* Polar Diagram */
+        .polar-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin: 2rem auto;
+            aspect-ratio: 1 / 1;
+        }
+
+        svg { width: 100%; height: 100%; overflow: visible; }
+
+        .polar-tooltip {
+            position: absolute;
+            background: rgba(0, 47, 95, 0.95);
+            color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 10;
+            width: 260px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .axis-label {
+            font-size: 13px;
+            font-family: sans-serif;
+            text-anchor: middle;
+            dominant-baseline: central;
+            cursor: pointer;
+        }
+
+        .data-point {
+            cursor: pointer;
+            transition: r 0.2s, fill 0.2s;
+        }
+
+        .data-point:hover {
+            r: 8;
+            fill: var(--primary-navy) !important;
+        }
+
+        /* Accordion */
+        details {
+            background-color: var(--white);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        summary {
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-navy);
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+            background-color: var(--bg-light);
+        }
+
+        summary::-webkit-details-marker { display: none; }
+        
+        summary::after {
+            content: '▼';
+            position: absolute;
+            right: 1.5rem;
+            font-size: 0.8rem;
+            transition: transform 0.2s;
+        }
+
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Agenda Stepper */
+        .agenda-stepper {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-left: 1rem;
+            margin-top: 2rem;
+        }
+
+        .agenda-step {
+            display: flex;
+            gap: 2rem;
+            position: relative;
+            padding-bottom: 2.5rem;
+        }
+
+        .agenda-step::before {
+            content: '';
+            position: absolute;
+            left: 23px;
+            top: 48px;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--border-color);
+        }
+
+        .agenda-step:last-child::before { display: none; }
+        .agenda-step:last-child { padding-bottom: 0; }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--primary-navy);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 0 4px var(--white);
+        }
+
+        .step-content {
+            background-color: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            flex-grow: 1;
+            border-left: 4px solid var(--primary-teal);
+            transition: transform 0.2s;
+        }
+
+        .step-content:hover {
+            transform: translateX(5px);
+            background-color: #E6F3F5;
+        }
+
+        /* Forms Section */
+        .forms-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .form-card {
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+
+        .form-category {
+            margin-top: 1.5rem;
+            background: var(--white);
+            padding: 1.25rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--primary-navy);
+        }
+
+        .form-category h4 {
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 900px) {
+            .forms-container { grid-template-columns: 1fr; }
+            .step-panel-grid { grid-template-columns: 1fr; }
+            nav { flex-direction: column; gap: 1rem; }
+            .nav-links { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>LEQ Educational Guide</h1>
+        <ul class="nav-links">
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#process">The Process</a></li>
+            <li><a href="#questionnaire">The Questionnaire</a></li>
+            <li><a href="#polar">Polar Diagram</a></li>
+            <li><a href="#instructions">Instructions</a></li>
+            <li><a href="#forms">Analysis Forms</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="overview">
+            <span class="microtext purpose">Purpose</span>
+            <h2>Systematic Course Evaluation and Development</h2>
+            <p>This digital learning resource is designed to assist teaching staff at Umeå University in conducting systematic, collegial, and scientifically grounded course evaluations and developments. The core instrument is the <strong>Learning Experience Questionnaire (LEQ)</strong>.</p>
+            <p>Crucially, the LEQ examines the <em>prerequisites for student learning</em> based on empirically grounded learning factors. It represents a shift away from evaluating teaching performance directly, focusing instead on the conditions that support higher education learning outcomes.</p>
+            <p>This guide supports continuous course evaluation and development. It operationalises the theoretical structure of the LEQ and provides structured methodologies, including forms for course analysis and course reflection, to ensure development work is founded on a scientific basis.</p>
+        </section>
+
+        <section id="process">
+            <span class="microtext practice">Continuous Cycle</span>
+            <h2>The LEQ Process</h2>
+            <p>The LEQ process functions as a cycle of experiential learning. It is an ongoing developmental cycle, not merely an administrative routine. Click on each step below to explore its purpose and position within the cycle.</p>
+            
+            <div class="flowchart-container">
+                <div class="flow-row">
+                    <button class="step-btn" onclick="showProcessStep(1, this)">1. New course offering</button>
+                    <button class="step-btn" onclick="showProcessStep(2, this)">2. Course survey</button>
+                    <button class="step-btn dashed" onclick="showProcessStep(3, this)">3. Course reflection</button>
+                </div>
+                <div class="flow-row">
+                    <button class="step-btn" onclick="showProcessStep(4, this)">4. Course analysis</button>
+                    <button class="step-btn dashed" onclick="showProcessStep(5, this)">5. Competence development</button>
+                    <button class="step-btn" onclick="showProcessStep(6, this)">6. Course development</button>
+                </div>
+
+                <div id="process-panel" class="step-panel">
+                    <h3 id="panel-title">Select a step</h3>
+                    <div class="step-panel-grid" id="panel-content" style="display: none;">
+                        <div class="step-card">
+                            <span class="microtext purpose">What happens</span>
+                            <p id="panel-what"></p>
+                        </div>
+                        <div class="step-card">
+                            <span class="microtext purpose">Purpose</span>
+                            <p id="panel-purpose"></p>
+                        </div>
+                        <div class="step-card">
+                            <span class="microtext practice">Connection</span>
+                            <p id="panel-connection"></p>
+                        </div>
+                    </div>
+                    <p id="panel-default">Interact with the flowchart above to understand how the LEQ parts relate and form a systematic approach to teaching.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="questionnaire">
+            <span class="microtext purpose">Theoretical Framework</span>
+            <h2>The Questionnaire and Learning Factors</h2>
+            <p>The LEQ's theoretical construction rests on Aaron Antonovsky's Sense of Coherence theory. The learning factors are grouped into three primary dimensions: <strong>Meaningfulness</strong>, <strong>Comprehensibility</strong>, and <strong>Manageability</strong>. Click a card to understand why each factor matters for the learning environment.</p>
+            
+            <div class="factors-header">
+                <span class="legend-badge" style="background-color: var(--meaningfulness);">Meaningfulness (1-7)</span>
+                <span class="legend-badge" style="background-color: var(--comprehensibility);">Comprehensibility (8-16)</span>
+                <span class="legend-badge" style="background-color: var(--manageability);">Manageability (17-22)</span>
+            </div>
+
+            <div class="factors-grid">
+                <!-- Meaningfulness -->
+                <div class="factor-card meaningfulness" onclick="toggleFactor(this)">
+                    <div class="factor-title">Meaningful content (a)</div>
+                    <p>We try to answer questions or solve problems that we find interesting or important.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statement 1:</strong> The course content felt meaningful to me as a person.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>When students perceive content as personally or professionally relevant, intrinsic motivation increases, which promotes deeper approaches to learning.</p>
+                    </div>
+                </div>
+
+                <div class="factor-card meaningfulness" onclick="toggleFactor(this)">
+                    <div class="factor-title">Active trial (b)</div>
+                    <p>We are able to speculate, test ideas and learn from experience.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statement 2:</strong> I was able to try out my own ideas about the subject, theoretically or practically, and learn from experience.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>Experiential learning requires space for active experimentation before learners possess complete knowledge, allowing them to construct understanding inductively.</p>
+                    </div>
+                </div>
+
+                <div class="factor-card meaningfulness" onclick="toggleFactor(this)">
+                    <div class="factor-title">Challenge (c)</div>
+                    <p>We are able to do so in a challenging and supportive environment.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statement 3:</strong> The course felt challenging in a stimulating way.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>Appropriate cognitive friction stimulates engagement. A challenging environment must be balanced with sufficient support to prevent anxiety.</p>
+                    </div>
+                </div>
+
+                <div class="factor-card meaningfulness" onclick="toggleFactor(this)">
+                    <div class="factor-title">Belonging and autonomy (d)</div>
+                    <p>We feel part of a community and believe others have confidence in our learning.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statements 4 & 5:</strong> I felt a sense of community. / I felt that the teachers had confidence in my ability.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>Socio-cultural learning theory posits that learning is fundamentally social. Feeling trusted and belonging to a community lowers affective filters.</p>
+                    </div>
+                </div>
+
+                <div class="factor-card meaningfulness" onclick="toggleFactor(this)">
+                    <div class="factor-title">Peer learning (e)</div>
+                    <p>We collaborate with and learn from other learners.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statement 6:</strong> Collaborating with others on the course helped me to learn.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>Collaborating with peers who are struggling with similar conceptual thresholds often provides more accessible scaffolding than expert explanations.</p>
+                    </div>
+                </div>
+
+                <div class="factor-card meaningfulness" onclick="toggleFactor(this)">
+                    <div class="factor-title">Practice (f)</div>
+                    <p>We are able to try, fail, and receive feedback before summative assessment.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statement 7:</strong> During the course I was given opportunities to practice what I was expected to learn.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>Formative practice separates the learning process from the anxiety of high-stakes grading, encouraging risk-taking and genuine skill development.</p>
+                    </div>
+                </div>
+
+                <!-- Comprehensibility -->
+                <div class="factor-card comprehensibility" onclick="toggleFactor(this)">
+                    <div class="factor-title">Clear organization (g)</div>
+                    <p>We understand how the environment is organized and what is expected of us.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statement 8:</strong> The course was organized in a way that helped me understand what I should do.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>A transparent structure reduces cognitive load related to navigation and administration, allowing students to focus cognitive resources on the subject matter.</p>
+                    </div>
+                </div>
+
+                <div class="factor-card comprehensibility" onclick="toggleFactor(this)">
+                    <div class="factor-title">Clear communication (h)</div>
+                    <p>We have sufficient prior knowledge to handle a well-adapted learning situation.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statement 9:</strong> The course content was communicated in ways I could understand.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>Teaching must align with the students' current zone of proximal development. Communication that bridges existing knowledge and new concepts is crucial.</p>
+                    </div>
+                </div>
+
+                <div class="factor-card comprehensibility" onclick="toggleFactor(this)">
+                    <div class="factor-title">Constructive alignment (i, j)</div>
+                    <p>We understand expected learning outcomes and fair assessment strategies.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statements 10, 11 & 12:</strong> Outcomes helped me understand what to learn. / Activities helped me reach outcomes. / Assessment was clear and equitable.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>Constructive alignment ensures that the intended learning outcomes, teaching activities, and assessment methods are coherently linked, guiding student effort.</p>
+                    </div>
+                </div>
+
+                <div class="factor-card comprehensibility" onclick="toggleFactor(this)">
+                    <div class="factor-title">Concrete examples (k)</div>
+                    <p>We are able to learn inductively from concrete examples.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statement 13:</strong> I was able to learn from concrete examples that I could relate to.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>Moving from concrete experiences to abstract, general principles helps students anchor theoretical concepts in relatable, real-world contexts.</p>
+                    </div>
+                </div>
+
+                <div class="factor-card comprehensibility" onclick="toggleFactor(this)">
+                    <div class="factor-title">Key concepts (l)</div>
+                    <p>We are challenged to develop a thorough understanding of key concepts.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statement 14:</strong> The course activities helped me develop a thorough understanding of key concepts.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>Prioritising deep understanding of threshold concepts allows learners to gradually build a coherent whole, rather than memorising fragmented information.</p>
+                    </div>
+                </div>
+
+                <div class="factor-card comprehensibility" onclick="toggleFactor(this)">
+                    <div class="factor-title">Feedback & Reflection (f, m)</div>
+                    <p>We receive regular feedback and opportunities to reflect.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statements 15 & 16:</strong> I received regular feedback to see my progress. / Opportunities to reflect on what I learned.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>Feedback directs future learning. Reflection allows students to integrate new experiences in light of previous knowledge, completing the experiential learning cycle.</p>
+                    </div>
+                </div>
+
+                <!-- Manageability -->
+                <div class="factor-card manageability" onclick="toggleFactor(this)">
+                    <div class="factor-title">Sufficient prior knowledge (h)</div>
+                    <p>Our background knowledge and abilities were sufficient.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statement 17:</strong> My background knowledge and abilities were sufficient to follow the course.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>If the gap between expected and actual prior knowledge is too large, manageability collapses, leading to surface learning or student withdrawal.</p>
+                    </div>
+                </div>
+
+                <div class="factor-card manageability" onclick="toggleFactor(this)">
+                    <div class="factor-title">Enough time (n)</div>
+                    <p>We have enough time to learn and devote the time needed.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statement 18:</strong> The pace of the course was reasonable in relation to what I was expected to do.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>Deep approaches to learning require time. Excessive workload inevitably forces students into strategic, surface-level memorisation strategies.</p>
+                    </div>
+                </div>
+
+                <div class="factor-card manageability" onclick="toggleFactor(this)">
+                    <div class="factor-title">Variation and participation (o)</div>
+                    <p>We learn in different ways and influence our learning situation.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statements 19 & 20:</strong> Enabled me to learn in different ways. / Teachers took into account my experiences.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>Offering varied instructional methods caters to diverse student backgrounds. Allowing students to influence their situation increases a sense of manageability and agency.</p>
+                    </div>
+                </div>
+
+                <div class="factor-card manageability" onclick="toggleFactor(this)">
+                    <div class="factor-title">Collaboration & Support (e, c)</div>
+                    <p>Opportunities to collaborate and receive support.</p>
+                    <div class="factor-details">
+                        <div class="statement-box">
+                            <strong>Statements 21 & 22:</strong> Opportunities to collaborate and discuss the subject. / Able to get support from teachers or peers.
+                        </div>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p>A supportive academic infrastructure ensures that when challenges become overwhelming, resources exist to guide the student back to productive learning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="polar">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                <div>
+                    <h2>Polar Diagram Explainer</h2>
+                    <p>The polar diagram visualises the average student response to statements 1 to 22. Statement 23 (own effort) is evaluated separately as its own subscale.</p>
+                </div>
+                <span class="microtext care" style="white-space: nowrap;">Interpret with care</span>
+            </div>
+            
+            <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 6px; margin-bottom: 2rem;">
+                <strong>How to interpret the diagram:</strong>
+                <ul>
+                    <li>Points further from the centre indicate that more students considered the statement to be true.</li>
+                    <li>A larger circular shape suggests a more beneficial learning environment in terms of the underlying learning factors.</li>
+                    <li><strong>Crucially:</strong> Weaker aspects are not automatically problems to fix. The diagram is a support for pedagogical analysis, not a normative judgement of teaching performance. Context dictates action.</li>
+                </ul>
+            </div>
+
+            <div class="polar-container">
+                <div id="polar-tooltip" class="polar-tooltip"></div>
+                <svg id="polarChart" viewBox="-40 -40 680 680" preserveAspectRatio="xMidYMid meet"></svg>
+            </div>
+        </section>
+
+        <section id="instructions">
+            <span class="microtext practice">In Practice</span>
+            <h2>Practical Instructions</h2>
+            <p>Guidelines and tools for executing the phases of the LEQ process efficiently.</p>
+            
+            <details>
+                <summary>Course Survey</summary>
+                <div class="accordion-content">
+                    <span class="microtext purpose">Tools used: Canvas</span>
+                    <p>At the end of the course, carry out a summative survey using the ready-made LEQ template in Canvas.</p>
+                    <ul>
+                        <li>Inform students at the start of the course how course evaluation will be conducted and why it is important.</li>
+                        <li>Report the results of the previous course evaluation, focusing on changes made.</li>
+                        <li>Avoid inserting additional questions to the LEQ to maintain its validity.</li>
+                        <li>Carry out the survey after the last examination, as the examination is a vital part of the learning environment.</li>
+                        <li>At least a one-week response period is recommended, reminding students twice a week.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>Course Reflection (Optional)</summary>
+                <div class="accordion-content">
+                    <span class="microtext purpose">Tools used: Survey&Report</span>
+                    <p>Students meet independently to jointly interpret survey results and pass aggregated feedback to the teacher.</p>
+                    <ul>
+                        <li>Use the web form support resource in Survey&Report.</li>
+                        <li>Present this possibility in connection with the start of the course.</li>
+                        <li>A suitable size for the student group is 4 to 6 people.</li>
+                        <li>Students should carry out the course reflection on their own, without the teacher present, to ensure open discussion.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary>Course Analysis</summary>
+                <div class="accordion-content">
+                    <span class="microtext purpose">Tools used: Survey&Report</span>
+                    <p>A structured preliminary analysis of the collected data, formulating conclusions about aspects to develop.</p>
+                    <ul>
+                        <li>Use the web form in Survey&Report containing guiding questions.</li>
+                        <li>Consider written comments heavily. For open questions, qualitative content analysis is advantageous to identify dominant themes.</li>
+                        <li>Make the final version available to the students in accordance with the Higher Education Ordinance (Ch. 1 § 14).</li>
+                    </ul>
+                </div>
+            </details>
+        </section>
+
+        <section id="agenda">
+            <span class="microtext purpose">Collegial Exchange</span>
+            <h2>Course Analysis Meeting</h2>
+            <p>The collegial meeting allows teachers to exchange concrete teaching experiences. It builds a community of practice using the preliminary course analysis as a foundation.</p>
+
+            <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 6px; margin: 1.5rem 0;">
+                <strong>Key Conditions:</strong>
+                <ul style="margin-bottom: 0;">
+                    <li>Different courses are usually preferable to broaden perspectives.</li>
+                    <li>Participants must prepare a preliminary course analysis beforehand.</li>
+                    <li>The chairperson facilitates rather than presents, managing time fairly.</li>
+                    <li>The purpose is the collegial exchange of concrete teaching experiences, not 'solving problems' for one another.</li>
+                    <li>LEQ remains an aid to analysis, not a normative judgement tool.</li>
+                </ul>
+            </div>
+            
+            <div class="agenda-stepper">
+                <div class="agenda-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Presentation of the pedagogical structure</h3>
+                        <p>Briefly describe the design and implementation of the teaching for the course. Provides essential context for colleagues.</p>
+                    </div>
+                </div>
+                <div class="agenda-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Stronger and weaker aspects of the learning environment</h3>
+                        <p>Highlight findings deduced from the polar diagram, students' written comments, and the open questions.</p>
+                    </div>
+                </div>
+                <div class="agenda-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Discussion of possible course development</h3>
+                        <p>Discuss the respective learning environments in a freer form. Explore pedagogical adjustments based on the identified aspects.</p>
+                    </div>
+                </div>
+                <div class="agenda-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Final reflection</h3>
+                        <p>Reflect collaboratively on the implementation and results of the meeting itself to continuously improve the collegial process.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="forms">
+            <span class="microtext practice">Documentation</span>
+            <h2>Course Analysis Forms</h2>
+            <p>The appendices provide structured forms to guide analysis and reflection. They move users methodically from raw data to pedagogical action.</p>
+
+            <div class="forms-container">
+                <div class="form-card">
+                    <h3 style="margin-top: 0;">Form for Course Analysis</h3>
+                    <p style="font-size: 0.95rem; color: var(--text-muted);">Used by the teacher to document findings step-by-step.</p>
+
+                    <div class="form-category">
+                        <h4>1. Background & Context</h4>
+                        <p style="font-size: 0.9rem;"><em>Includes: Course details, Quality perspectives (e.g., Sustainability, Gender equality), Implemented changes, Outcome data.</em></p>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 0;">Establishes the variables that might have influenced the current learning environment.</p>
+                    </div>
+
+                    <div class="form-category">
+                        <h4>2. Student Perspective</h4>
+                        <p style="font-size: 0.9rem;"><em>Includes: Response rate, Analysis of learning environment (statements 1-22), Own effort (23), Open questions analysis.</em></p>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 0;">Forces a qualitative synthesis of quantitative LEQ data and written comments to identify dominant themes.</p>
+                    </div>
+
+                    <div class="form-category">
+                        <h4>3. Teacher Perspective & Action</h4>
+                        <p style="font-size: 0.9rem;"><em>Includes: Prioritised course development, Revision of syllabus.</em></p>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 0;">Translates the analysis into concrete, prioritised pedagogical developments for the next offering.</p>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <h3 style="margin-top: 0;">Form for Course Reflection</h3>
+                    <p style="font-size: 0.95rem; color: var(--text-muted);">Used by the optional student group to independently clarify survey results.</p>
+
+                    <div class="form-category">
+                        <h4>1. Setup & Specifics</h4>
+                        <p style="font-size: 0.9rem;"><em>Includes: Course details, Specific questions conveyed by teachers.</em></p>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 0;">Allows teachers to direct student reflection towards specific pedagogical interventions they are unsure about.</p>
+                    </div>
+
+                    <div class="form-category">
+                        <h4>2. Collaborative Analysis</h4>
+                        <p style="font-size: 0.9rem;"><em>Includes: Discussion of statements 1-23, Discussion of open questions.</em></p>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 0;">Helps teachers interpret ambiguous survey responses by providing aggregated, negotiated student consensus.</p>
+                    </div>
+
+                    <div class="form-category">
+                        <h4>3. Actionable Suggestions</h4>
+                        <p style="font-size: 0.9rem;"><em>Includes: Suggestions for course development.</em></p>
+                        <span class="microtext purpose">Why this matters</span>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem; margin-bottom: 0;">Empowers students to participate as partners in pedagogical development, rather than merely consumers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Source: Centre for Educational Development, Umeå University, Edition 3, 2023</p>
+    </footer>
+
+    <script>
+        // Flowchart Interaction Data
+        const processData = {
+            1: { 
+                what: "The cycle begins upon completion of your previous course offering.", 
+                purpose: "To implement planned developments. Formative evaluation during the course is advantageous to adapt to student needs.", 
+                connection: "Leads directly into the summative evaluation at the end of the course." 
+            },
+            2: { 
+                what: "At the end of the course, carry out a summative course survey using the LEQ tool in Canvas.", 
+                purpose: "To gather systematic data on the prerequisites for student learning based on empirically proven factors.", 
+                connection: "Provides the foundational data required for either student reflection or teacher analysis." 
+            },
+            3: { 
+                what: "A group of students meets independently to jointly interpret results and pass feedback back to the teacher.", 
+                purpose: "To help teachers understand ambiguous survey responses through aggregated student consensus.", 
+                connection: "Provides enriched qualitative data directly feeding into the teacher's course analysis." 
+            },
+            4: { 
+                what: "Perform a preliminary course analysis. Present and discuss at a collegial meeting, then confirm the final version.", 
+                purpose: "To translate survey data and reflections into pedagogical insights and prioritised actions.", 
+                connection: "Identifies both local course developments and potential broader competence development needs." 
+            },
+            5: { 
+                what: "Tailored educational activities for staff.", 
+                purpose: "To address common educational challenges that emerge across different courses during the analysis meeting.", 
+                connection: "Equips teachers with the skills necessary to implement their planned course developments." 
+            },
+            6: { 
+                what: "Implement the planned proposals indicated in the final analysis.", 
+                purpose: "To continuously improve the learning environment and close the experiential learning cycle.", 
+                connection: "Results are tested and evaluated when the new course offering begins (Step 1)." 
+            }
+        };
+
+        function showProcessStep(stepId, btnElement) {
+            // Update buttons
+            document.querySelectorAll('.step-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            // Show panel
+            const panel = document.getElementById('process-panel');
+            const content = document.getElementById('panel-content');
+            const defaultText = document.getElementById('panel-default');
+            
+            document.getElementById('panel-title').textContent = btnElement.textContent;
+            document.getElementById('panel-what').textContent = processData[stepId].what;
+            document.getElementById('panel-purpose').textContent = processData[stepId].purpose;
+            document.getElementById('panel-connection').textContent = processData[stepId].connection;
+            
+            panel.classList.add('active');
+            content.style.display = 'grid';
+            defaultText.style.display = 'none';
+        }
+
+        // Factor Cards Interaction
+        function toggleFactor(card) {
+            card.classList.toggle('expanded');
+        }
+
+        // SVG Polar Chart Generation
+        document.addEventListener("DOMContentLoaded", () => {
+            const svg = document.getElementById('polarChart');
+            const tooltip = document.getElementById('polar-tooltip');
+            const cx = 300, cy = 300, radius = 240;
+            const axesCount = 22; // Excluding 23
+            
+            // Mock Data demonstrating a realistic course profile
+            const dataValues = [4.2, 4.5, 4.1, 4.8, 4.6, 4.0, 4.3, 3.8, 4.2, 4.5, 4.4, 4.1, 3.9, 4.0, 4.3, 4.1, 4.5, 4.0, 4.2, 4.6, 4.4, 4.5];
+
+            const statements = [
+                "1. Content felt meaningful.",
+                "2. Try out my own ideas.",
+                "3. Challenging in a stimulating way.",
+                "4. Sense of community.",
+                "5. Teachers had confidence in me.",
+                "6. Collaborating helped me learn.",
+                "7. Opportunities to practice.",
+                "8. Organised to help understanding.",
+                "9. Communicated understandably.",
+                "10. Outcomes helped understand learning.",
+                "11. Activities helped reach outcomes.",
+                "12. Knowledge assessed equitably.",
+                "13. Learn from concrete examples.",
+                "14. Thorough understanding of key concepts.",
+                "15. Received regular feedback.",
+                "16. Opportunities to reflect.",
+                "17. Background knowledge was sufficient.",
+                "18. Pace of course was reasonable.",
+                "19. Enabled to learn in different ways.",
+                "20. Teachers took into account experiences.",
+                "21. Opportunities to collaborate.",
+                "22. Able to get support if needed."
+            ];
+
+            const colors = {
+                meaningfulness: '#E07A5F',
+                comprehensibility: '#3D5A80',
+                manageability: '#81B29A'
+            };
+
+            function getDimensionColor(index) {
+                if (index < 7) return colors.meaningfulness;
+                if (index < 16) return colors.comprehensibility;
+                return colors.manageability;
+            }
+
+            function getDimensionName(index) {
+                if (index < 7) return "Meaningfulness";
+                if (index < 16) return "Comprehensibility";
+                return "Manageability";
+            }
+
+            // Draw concentric background circles
+            for (let i = 1; i <= 5; i++) {
+                const r = (radius / 5) * i;
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', cx);
+                circle.setAttribute('cy', cy);
+                circle.setAttribute('r', r);
+                circle.setAttribute('fill', 'none');
+                circle.setAttribute('stroke', '#E0E4E8');
+                circle.setAttribute('stroke-width', '1');
+                svg.appendChild(circle);
+
+                // Add grid labels along the vertical axis
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', cx + 5);
+                text.setAttribute('y', cy - r + 15);
+                text.setAttribute('font-size', '12px');
+                text.setAttribute('fill', '#888');
+                text.textContent = i;
+                svg.appendChild(text);
+            }
+
+            // Draw axes and calculate polygon points
+            const angleStep = (Math.PI * 2) / axesCount;
+            const points = [];
+
+            for (let i = 0; i < axesCount; i++) {
+                const angle = (i * angleStep) - (Math.PI / 2); 
+                const xEdge = cx + radius * Math.cos(angle);
+                const yEdge = cy + radius * Math.sin(angle);
+
+                // Axis line
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', cx);
+                line.setAttribute('y1', cy);
+                line.setAttribute('x2', xEdge);
+                line.setAttribute('y2', yEdge);
+                line.setAttribute('stroke', '#E0E4E8');
+                line.setAttribute('stroke-width', '1');
+                svg.appendChild(line);
+
+                // Axis label
+                const labelX = cx + (radius + 28) * Math.cos(angle);
+                const labelY = cy + (radius + 28) * Math.sin(angle);
+                const labelGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                
+                const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                label.setAttribute('x', labelX);
+                label.setAttribute('y', labelY);
+                label.setAttribute('class', 'axis-label');
+                label.setAttribute('fill', getDimensionColor(i));
+                label.setAttribute('font-weight', 'bold');
+                label.textContent = i + 1;
+                
+                // Add invisible hit-area circle for easier hovering on labels
+                const hitArea = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                hitArea.setAttribute('cx', labelX);
+                hitArea.setAttribute('cy', labelY);
+                hitArea.setAttribute('r', '15');
+                hitArea.setAttribute('fill', 'transparent');
+                
+                labelGroup.appendChild(label);
+                labelGroup.appendChild(hitArea);
+
+                // Hover events for labels to show tooltip
+                const hoverHandler = (e) => {
+                    tooltip.innerHTML = `
+                        <div style="font-size: 0.8rem; text-transform: uppercase; color: #A8DADC; margin-bottom: 0.4rem;">${getDimensionName(i)}</div>
+                        <strong>Statement ${i+1}:</strong> ${statements[i]}<br>
+                        <div style="margin-top: 0.4rem; color: #FFF;">Average Score: <strong>${dataValues[i]}</strong></div>
+                    `;
+                    tooltip.style.opacity = '1';
+                };
+
+                labelGroup.addEventListener('mouseenter', hoverHandler);
+                labelGroup.addEventListener('mousemove', (e) => {
+                    const rect = svg.getBoundingClientRect();
+                    tooltip.style.left = `${e.clientX - rect.left + 20}px`;
+                    tooltip.style.top = `${e.clientY - rect.top + 20}px`;
+                });
+                labelGroup.addEventListener('mouseleave', () => tooltip.style.opacity = '0');
+
+                svg.appendChild(labelGroup);
+
+                // Calculate data polygon coordinate
+                const valRadius = (dataValues[i] / 5) * radius;
+                const pX = cx + valRadius * Math.cos(angle);
+                const pY = cy + valRadius * Math.sin(angle);
+                points.push(`${pX},${pY}`);
+            }
+
+            // Draw data polygon
+            const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            polygon.setAttribute('points', points.join(' '));
+            polygon.setAttribute('fill', 'rgba(0, 108, 122, 0.15)');
+            polygon.setAttribute('stroke', 'var(--primary-teal)');
+            polygon.setAttribute('stroke-width', '2.5');
+            svg.appendChild(polygon);
+
+            // Draw interactive data points
+            for (let i = 0; i < axesCount; i++) {
+                const angle = (i * angleStep) - (Math.PI / 2);
+                const valRadius = (dataValues[i] / 5) * radius;
+                const pX = cx + valRadius * Math.cos(angle);
+                const pY = cy + valRadius * Math.sin(angle);
+
+                const point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                point.setAttribute('cx', pX);
+                point.setAttribute('cy', pY);
+                point.setAttribute('r', '6');
+                point.setAttribute('fill', getDimensionColor(i));
+                point.setAttribute('stroke', '#fff');
+                point.setAttribute('stroke-width', '2');
+                point.setAttribute('class', 'data-point');
+
+                point.addEventListener('mouseenter', (e) => {
+                    tooltip.innerHTML = `
+                        <div style="font-size: 0.8rem; text-transform: uppercase; color: #A8DADC; margin-bottom: 0.4rem;">${getDimensionName(i)}</div>
+                        <strong>Statement ${i+1}:</strong> ${statements[i]}<br>
+                        <div style="margin-top: 0.4rem; color: #FFF;">Average Score: <strong>${dataValues[i]}</strong></div>
+                    `;
+                    tooltip.style.opacity = '1';
+                });
+
+                point.addEventListener('mousemove', (e) => {
+                    const rect = svg.getBoundingClientRect();
+                    tooltip.style.left = `${e.clientX - rect.left + 20}px`;
+                    tooltip.style.top = `${e.clientY - rect.top + 20}px`;
+                });
+
+                point.addEventListener('mouseleave', () => tooltip.style.opacity = '0');
+
+                svg.appendChild(point);
+            }
+        });
+    </script>
+</body>
+</html>

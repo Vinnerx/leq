@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Learning Experience Questionnaire (LEQ) – Learning Resource</title>
+<style>
+:root{
+  --navy:#0b2e3c;
+  --teal:#0f4c5c;
+  --light:#f7f9fb;
+  --text:#1f2933;
+  --meaning:#f4a261;
+  --compreh:#4ea8de;
+  --manage:#6abf69;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:var(--light);line-height:1.55;}
+header{background:var(--navy);color:#fff;padding:1rem 1.5rem;position:sticky;top:0;z-index:10;}
+header h1{margin:0;font-size:1.2rem;}
+nav{margin-top:.5rem;display:flex;flex-wrap:wrap;gap:.75rem;font-size:.9rem;}
+nav a{color:#dce7ec;text-decoration:none;}
+nav a:hover{text-decoration:underline;}
+main{max-width:1100px;margin:0 auto;padding:1.5rem;}
+section{background:#fff;border-radius:6px;padding:1.5rem;margin-bottom:1.5rem;}
+section h2{margin-top:0;color:var(--teal);}
+.micro{font-size:.85rem;color:#4b5563;margin:.5rem 0;}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;}
+.step{border:1px solid #d1d5db;border-radius:6px;padding:1rem;cursor:pointer;position:relative;}
+.step.optional{border-style:dashed;}
+.step strong{display:block;margin-bottom:.5rem;}
+.step-details{display:none;font-size:.85rem;margin-top:.5rem;}
+.step.active .step-details{display:block;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+.card{border-radius:6px;padding:1rem;color:#000;cursor:pointer;}
+.card.meaning{background:rgba(244,162,97,.25);}
+.card.compreh{background:rgba(78,168,222,.25);}
+.card.manage{background:rgba(106,191,105,.25);}
+.card-details{display:none;font-size:.85rem;margin-top:.5rem;}
+.card.active .card-details{display:block;}
+.accordion button{width:100%;text-align:left;padding:.75rem;border:none;background:#eef2f6;font-size:1rem;margin-bottom:.5rem;cursor:pointer;}
+.accordion .panel{display:none;padding:.75rem 1rem;font-size:.9rem;border-left:3px solid var(--teal);}
+.timeline{display:flex;flex-wrap:wrap;gap:1rem;}
+.round{flex:1 1 200px;border:1px solid #d1d5db;border-radius:6px;padding:1rem;cursor:pointer;}
+.round-details{display:none;font-size:.85rem;margin-top:.5rem;}
+.round.active .round-details{display:block;}
+footer{font-size:.8rem;color:#374151;text-align:center;margin:2rem 0;}
+svg{max-width:100%;}
+.tooltip{position:absolute;background:#fff;border:1px solid #d1d5db;padding:.4rem .6rem;font-size:.75rem;pointer-events:none;display:none;}
+</style>
+</head>
+<body>
+<header>
+  <h1>Learning Experience Questionnaire (LEQ)</h1>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#process">LEQ Process</a>
+    <a href="#questionnaire">Questionnaire</a>
+    <a href="#polar">Polar Diagram</a>
+    <a href="#practical">Practical Instructions</a>
+    <a href="#meeting">Course Analysis Meeting</a>
+    <a href="#forms">Course Analysis Forms</a>
+  </nav>
+</header>
+<main>
+<section id="overview">
+<h2>Overview</h2>
+<p>This resource presents the <strong>Learning Experience Questionnaire (LEQ)</strong> as a systematic, collegial and scientific approach to course evaluation and course development at Umeå University.</p>
+<p>LEQ examines <em>prerequisites for student learning</em> by focusing on empirically grounded learning factors that research has shown to promote learning in higher education.</p>
+<p>The guide supports teachers in analysing the learning environment of a course and using this analysis as a basis for course development. The appendices explain the theoretical structure of LEQ and include forms for course analysis and course reflection.</p>
+<div class="micro"><strong>Why this matters:</strong> LEQ shifts attention from satisfaction or performance to conditions for learning, supporting development work grounded in research.</div>
+</section>
+
+<section id="process">
+<h2>The LEQ Process</h2>
+<p>The LEQ process is an ongoing development cycle rather than an administrative routine.</p>
+<div class="flow">
+  <div class="step"><strong>1. New course offering</strong><div class="step-details">A course is completed. Formative evaluation during the course may already inform adjustments.<br><em>Purpose:</em> Provides the concrete experience that initiates the cycle.</div></div>
+  <div class="step"><strong>2. Course survey using LEQ</strong><div class="step-details">Students respond to the LEQ questionnaire at the end of the course.<br><em>Purpose:</em> Collects systematic data on the learning environment.</div></div>
+  <div class="step optional"><strong>3. Students’ course reflection (optional)</strong><div class="step-details">A group of students jointly interprets survey results and passes reflections to the teacher.<br><em>Purpose:</em> Clarifies student perspectives and supports interpretation.</div></div>
+  <div class="step"><strong>4. Course analysis</strong><div class="step-details">The teacher drafts a course analysis, discusses it collegially, and confirms a final version.<br><em>Purpose:</em> Interprets data and identifies development priorities.</div></div>
+  <div class="step"><strong>5. Competence development</strong><div class="step-details">Shared needs identified may lead to competence development activities.<br><em>Purpose:</em> Strengthens teaching practice collectively.</div></div>
+  <div class="step"><strong>6. Course development</strong><div class="step-details">Planned changes are implemented, often in the next course offering.<br><em>Purpose:</em> Tests development ideas in practice.</div></div>
+</div>
+<div class="micro"><strong>Interpret with care:</strong> Each step connects to the next, forming a cycle of experience, reflection, analysis and development.</div>
+</section>
+
+<section id="questionnaire">
+<h2>The Questionnaire</h2>
+<p>The LEQ questionnaire is built around <strong>15 learning factors</strong>, operationalised through 23 statements. Statements 1–22 concern the learning environment and are grouped into three dimensions.</p>
+<h3>Meaningfulness (statements 1–7)</h3>
+<div class="cards">
+  <div class="card meaning"><strong>a) Meaningful content</strong><div class="card-details">Statements: 1<br>Learning is promoted when content is perceived as interesting, exciting or important.</div></div>
+  <div class="card meaning"><strong>b) Active trial</strong><div class="card-details">Statements: 2<br>Trying ideas and learning from experience supports deep learning.</div></div>
+  <div class="card meaning"><strong>c) Challenge and support</strong><div class="card-details">Statements: 3, 22<br>Learning benefits from environments that are both challenging and supportive.</div></div>
+  <div class="card meaning"><strong>d) Belonging and autonomy</strong><div class="card-details">Statements: 4, 5<br>A sense of community and trust in students’ ability to learn supports engagement.</div></div>
+  <div class="card meaning"><strong>e) Collaboration and peer learning</strong><div class="card-details">Statements: 6, 21<br>Learning with others facing similar challenges promotes understanding.</div></div>
+  <div class="card meaning"><strong>f) Practice and feedback</strong><div class="card-details">Statements: 7, 15<br>Opportunities to practice and receive feedback support learning before assessment.</div></div>
+</div>
+
+<h3>Comprehensibility (statements 8–16)</h3>
+<div class="cards">
+  <div class="card compreh"><strong>g) Clear organisation</strong><div class="card-details">Statements: 8<br>Understanding how the course is organised supports orientation.</div></div>
+  <div class="card compreh"><strong>h) Prior knowledge and communication</strong><div class="card-details">Statements: 9, 17<br>Learning is supported when communication is clear and adapted to students’ prior knowledge.</div></div>
+  <div class="card compreh"><strong>i) Constructive alignment</strong><div class="card-details">Statements: 10, 11<br>Alignment between outcomes and activities supports understanding of learning goals.</div></div>
+  <div class="card compreh"><strong>j) Fair assessment</strong><div class="card-details">Statements: 12<br>Perceived fairness and clarity in assessment support trust and engagement.</div></div>
+  <div class="card compreh"><strong>k) Concrete examples</strong><div class="card-details">Statements: 13<br>Examples help students move from concrete experience to general principles.</div></div>
+  <div class="card compreh"><strong>l) Key concepts</strong><div class="card-details">Statements: 14<br>Focus on key concepts supports coherent understanding.</div></div>
+  <div class="card compreh"><strong>m) Reflective observation</strong><div class="card-details">Statements: 16<br>Reflection connects new experiences to prior knowledge.</div></div>
+</div>
+
+<h3>Manageability (statements 17–22)</h3>
+<div class="cards">
+  <div class="card manage"><strong>n) Enough time and effort</strong><div class="card-details">Statements: 18, 23<br>Learning requires sufficient time and student effort.</div></div>
+  <div class="card manage"><strong>o) Variation and participation</strong><div class="card-details">Statements: 19, 20<br>Variation and opportunities to influence learning support manageability.</div></div>
+</div>
+<div class="micro"><strong>In practice:</strong> Learning factors link abstract theory to concrete aspects of the learning environment.</div>
+</section>
+
+<section id="polar">
+<h2>Polar Diagram Explainer</h2>
+<p>The polar diagram visualises students’ average responses to statements 1–22.</p>
+<svg viewBox="0 0 300 300" aria-label="Polar diagram illustration">
+  <circle cx="150" cy="150" r="120" fill="none" stroke="#d1d5db" />
+  <circle cx="150" cy="150" r="80" fill="none" stroke="#e5e7eb" />
+  <circle cx="150" cy="150" r="40" fill="none" stroke="#f3f4f6" />
+</svg>
+<ul>
+<li>Points further from the centre indicate that more students considered the statement to be true.</li>
+<li>A more circular shape suggests a more beneficial learning environment in terms of the learning factors.</li>
+<li>Weaker aspects are not automatically problems to fix.</li>
+<li>The diagram supports analysis and reflection, not normative judgement.</li>
+<li>Statement 23 (own effort) is not included.</li>
+</ul>
+</section>
+
+<section id="practical">
+<h2>Practical Instructions</h2>
+<div class="accordion">
+<button>Course Survey</button>
+<div class="panel"><p><strong>Purpose:</strong> Collect systematic student feedback on the learning environment.</p><p><strong>Resources:</strong> Canvas LEQ template, UmU Play support videos.</p><ul><li>Inform students early about why and how evaluation is conducted.</li><li>Report previous evaluation results and implemented changes.</li><li>Carry out the survey after the last examination.</li></ul></div>
+<button>Course Reflection</button>
+<div class="panel"><p><strong>Purpose:</strong> Allow students to jointly interpret survey results.</p><p><strong>Resources:</strong> Survey&amp;Report, UmU Play.</p><ul><li>Students work independently without the teacher present.</li><li>Groups of 4–6 students are suitable.</li></ul></div>
+<button>Course Analysis</button>
+<div class="panel"><p><strong>Purpose:</strong> Analyse survey results and document conclusions.</p><p><strong>Resources:</strong> Survey&amp;Report.</p><ul><li>Use qualitative content analysis for open questions.</li><li>Make the final analysis available to students.</li></ul></div>
+<button>Course Analysis Meeting</button>
+<div class="panel"><p><strong>Purpose:</strong> Collegial exchange of teaching experience.</p><ul><li>Prepare a preliminary course analysis.</li><li>LEQ supports discussion rather than judgement.</li></ul></div>
+</div>
+</section>
+
+<section id="meeting">
+<h2>Course Analysis Meeting</h2>
+<div class="timeline">
+  <div class="round"><strong>1. Pedagogical structure</strong><div class="round-details">Presentation of how each course is organised.</div></div>
+  <div class="round"><strong>2. Learning environment</strong><div class="round-details">Stronger and weaker aspects based on the polar diagram.</div></div>
+  <div class="round"><strong>3. Course development</strong><div class="round-details">Discussion of possible development and challenges.</div></div>
+  <div class="round"><strong>4. Final reflection</strong><div class="round-details">Reflection on the meeting and its outcomes.</div></div>
+</div>
+<ul>
+<li>Different courses are usually preferable.</li>
+<li>Participants prepare a preliminary course analysis.</li>
+<li>The chairperson facilitates rather than presents.</li>
+<li>The purpose is collegial exchange of concrete teaching experience.</li>
+<li>LEQ is an aid to analysis, not a normative judgement tool.</li>
+</ul>
+</section>
+
+<section id="forms">
+<h2>Course Analysis Forms</h2>
+<h3>Form for Course Analysis</h3>
+<p>This form supports systematic documentation of survey results, analysis of the learning environment, and prioritisation of course development.</p>
+<ul>
+<li><strong>Context and outcomes:</strong> Course data, response rate, and student achievement.</li>
+<li><strong>Learning environment:</strong> Analysis of statements 1–22 and own effort.</li>
+<li><strong>Student perspectives:</strong> Synthesis of open-question responses.</li>
+<li><strong>Development priorities:</strong> Planned short- and long-term improvements.</li>
+</ul>
+<h3>Form for Course Reflection</h3>
+<p>This form helps student groups interpret survey results and suggest course development priorities.</p>
+<ul>
+<li><strong>Learning environment:</strong> Joint interpretation of statements.</li>
+<li><strong>Open questions:</strong> Identification of important themes.</li>
+<li><strong>Suggestions:</strong> Motivated proposals for development.</li>
+</ul>
+</section>
+
+<footer>
+<p>Source: Centre for Educational Development, Umeå University, Edition 3, 2023</p>
+</footer>
+</main>
+<script>
+document.querySelectorAll('.step').forEach(s=>s.onclick=()=>s.classList.toggle('active'));
+document.querySelectorAll('.card').forEach(c=>c.onclick=()=>c.classList.toggle('active'));
+document.querySelectorAll('.round').forEach(r=>r.onclick=()=>r.classList.toggle('active'));
+document.querySelectorAll('.accordion button').forEach((b,i)=>{
+  b.onclick=()=>{
+    const p=b.nextElementSibling;
+    p.style.display=p.style.display==='block'?'none':'block';
+  }
+});
+</script>
+</body>
+</html>
